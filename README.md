@@ -11,25 +11,22 @@ This is also a router from a Swedish Internet operator to find back doors and to
 I got this router mailed to me as a donation from @anotherman 2022-12-03 - Thanks alot @anotherman, without you I would never have had the chance to check out this router from [comhem](https://comhem.com)
 
 ### Default User Login
-
+```
 Username: admin
 BlockedUser: guest
 Maintheme: styles/themes/comhem-main.css
 FeatureAccessz: acs, admin, expert, internal, sagemcom
 firmwareUpgrade: Device/gen3890v3
-
+```
 
 ### Get all settings via xpath
-
+```javascript
 $.xmo.getValuesTree($.xpaths.accessControl);
 $.xmo.getValuesTree($.xpaths.accessControl.firewall);
 $.xmo.getValuesTree($.xpaths.accessControl.firewall.enable);
 $.xmo.getValuesTree($.xpaths.adminAdvanced);
 $.xmo.getValuesTree($.xpaths.adminAdvanced.passwd);
-
-
 $.xmo.getValuesTree($.xpaths.advanced);
-
 $.xmo.getValuesTree($.xpaths.arp);
 $.xmo.getValuesTree($.xpaths.availability);
 $.xmo.getValuesTree($.xpaths.broadband);
@@ -65,13 +62,8 @@ $.xmo.getValuesTree($.xpaths.myCloud);
 $.xmo.getValuesTree($.xpaths.mySagemcomBox);
 $.xmo.getValuesTree($.xpaths.mymedia);
 $.xmo.getValuesTree($.xpaths.neighborAps);
-
-
-
 $.xmo.getValuesTree($.xpaths.rpc);
 $.xmo.getValuesTree($.xpaths.rpc.firmwareUpgrade);      (SAME AS xmo.device)
-
-
 $.xmo.getValuesTree($.xpaths.runlevel);
 $.xmo.getValuesTree($.xpaths.scheduling);
 $.xmo.getValuesTree($.xpaths.singleLine);
@@ -97,37 +89,21 @@ $.xmo.getValuesTree($.xpaths.wifiReadOnly);
 $.xmo.getValuesTree($.xpaths.wifiResetStats);
 $.xmo.getValuesTree($.xpaths.wifiRestoreDefault);
 $.xmo.getValuesTree($.xpaths.wizard);
-
-
-
-
-
-
-
-
-
-
 $.xmo.getValuesTree($.xpaths.accessControl.firewall.enable);
-
 $.xmo.setValuesTree('false', $.xpaths.accessControl.firewall.enable);
-
-
+```
 
 ### List all settiings for all users
-
+```javascript
 $.xmo.getValuesTree("Device/UserAccounts/Users/*")
 $.xmo.getValuesTree("Device/UserAccounts/Users/*/*")
 $.xmo.getValuesTree("Device/UserAccounts/Users/*/*/*/*")
 $.xmo.getValuesTree("Device/UserAccounts/Users/*/*/*/*/")
-
-
-
+```
 ### Get role status by login
-
-
+```javascript
 Device/UserAccounts/Users/User[Login='admin']/Role
-
-
+```
 ### Get role status by uid
 
 ```javascript
