@@ -8,8 +8,7 @@
 
 This is also a router from a Swedish Internet operator to find back doors and to see what is under the hood.
 
-I got this router mailed to me as a donation from @anotherman 2022-12-03 - Thanks alot @anotherman, without you I would never have had the chance to check out this router from [comhem](https://comhem.com)
-
+##### I got this router mailed to me as a donation from @anotherman 2022-12-03 - Thanks alot @anotherman
 ### Default User Login
 ```
 Username: admin
