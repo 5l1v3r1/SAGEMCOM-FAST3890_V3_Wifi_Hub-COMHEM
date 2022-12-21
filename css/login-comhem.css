@@ -1,0 +1,412 @@
+body.bg-gradient {
+    background: #e6ebe6;
+    background-image: url(../images/comhem/background.jpg)!important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover
+}
+
+#login {
+    margin: 2em 0;
+    background: #fff
+}
+
+.msg-error {
+    display: none
+}
+
+.input-error {
+    border: solid 1px red!important
+}
+
+#header-page {
+    height: 5em;
+    padding: 1em 0
+}
+
+#main-content {
+    border: 1px solid #8d8d8d;
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px #bbb;
+    padding: 1em 1.5em
+}
+
+.maintitle {
+    font-size: 1.2em
+}
+
+.fpf {
+    content: ' Made with ♥ by FPFtech '
+}
+
+.status-internet-on,.status-internet-on-sm {
+    background-image: url(../images/comhem/status-internet-on.svg)
+}
+
+.status-internet-off,.status-internet-off-sm {
+    background-image: url(../images/comhem/status-internet-off.svg)
+}
+
+.status-internet-disabled,.status-internet-disabled-sm {
+    background-image: url(../images/comhem/status-internet-disabled.svg)
+}
+
+.status-not-registered,.status-not-registered-sm {
+    background-image: url(../images/comhem/status-not-registered.svg)
+}
+
+.status-registered,.status-registered-sm {
+    background-image: url(../images/comhem/status-registered.svg)
+}
+
+.access-control {
+    background-image: url(../images/comhem/access-control.svg)
+}
+
+.my-box {
+    background-image: url(../images/comhem/my-box.svg)
+}
+
+.network-map {
+    background-image: url(../images/comhem/network-map.svg)
+}
+
+.status-wifi-on-sm {
+    background-image: url(../images/comhem/sprite-wifi.svg)
+}
+
+.status-wifi-off-sm {
+    background-image: url(../images/comhem/sprite-wifi-off.svg)
+}
+
+#login form {
+    padding: 30px!important
+}
+
+#login #password,#login #user,#login input[type=submit] {
+    font-family: 'Lineto Brown',sans-serif;
+    margin-bottom: 15px
+}
+
+input[type=email],input[type=password],input[type=text] {
+    border-radius: 3px;
+    color: #333;
+    padding-left: 42px;
+    width: 100%;
+    margin-bottom: 0;
+    -webkit-transition: none .2s ease-in-out 0s;
+    -moz-transition: none .2s ease-in-out 0s;
+    transition: none .2s ease-in-out 0s
+}
+
+input[type=email]:focus,input[type=password]:focus,input[type=text]:focus {
+    background-color: #e6e6e6;
+    border-color: #16488d;
+    box-shadow: none
+}
+
+input[type=text].input-error {
+    border: solid 1px red!important
+}
+
+#password {
+    background-image: url(../images/lock.svg);
+    background-position: 10px 7px;
+    background-repeat: no-repeat;
+    background-size: 19px 19px
+}
+
+input:-webkit-autofill,select:-webkit-autofill,textarea:-webkit-autofill {
+    background-image: inherit!important
+}
+
+#form-login .row.msg-error {
+    text-align: center
+}
+
+.row .tiles-login .row {
+    margin-left: auto;
+    margin-right: auto
+}
+
+.tiles-login {
+    width: 1200px;
+    z-index: 2;
+    margin: auto;
+    margin-top: 20px;
+    margin-left: -10%
+}
+
+#login {
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    border-top: 6px solid #0f5ab9;
+    width: 100%;
+    max-width: 360px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 170px;
+    margin-left: -180px
+}
+
+@media (max-width: 1024px) {
+    .tiles-login {
+        display:none!important
+    }
+}
+
+#button-blue {
+    background: #0f5ab9;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    padding: 15px 0;
+    width: 100%;
+    font-size: 16px;
+    text-transform: uppercase
+}
+
+#button-blue:active {
+    box-shadow: inset 0 3px 6px #0c4ca0
+}
+
+#button-blue:active,#button-blue:focus,#button-blue:hover {
+    background: #0c4ca0
+}
+
+.msg-error p {
+    background-color: #fff;
+    color: #e3092f;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 2px solid
+}
+
+@media (min-width: 300px) {
+    .box-error {
+        line-height:34px;
+        padding: 0;
+        padding-left: 50px
+    }
+}
+
+.grid__item {
+    margin: 0 0 24px;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.usp-tile {
+    text-align: left;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    max-height: 130px;
+    overflow: hidden
+}
+
+.usp-tile__title {
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    width: 100%
+}
+
+.usp-tile__content {
+    position: relative;
+    background-color: #fff;
+    width: 100%
+}
+
+.usp-tile__text {
+    padding: 18px 24px 24px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 100%
+}
+
+.inset-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 24px;
+    z-index: 1
+}
+
+.inset-border__color {
+    width: 100%;
+    height: 6px
+}
+
+.inset-border--dark-blue .inset-border__color {
+    background-color: #0f5ab9
+}
+
+.status-internet-disabled-sm,.status-internet-off-sm,.status-internet-on-sm,.status-not-registered-sm,.status-registered-sm,.status-wifi-off-sm,.status-wifi-on-sm {
+    background-size: cover;
+    color: inherit;
+    display: inline-block;
+    position: absolute;
+    right: 25px;
+    width: 24px;
+    height: 24px
+}
+
+.box-container-login {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+.logo_login {
+    background-image: url(../images/comhem/comhem-logo.png)!important;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 129px;
+    height: 32px;
+    margin-bottom: 25px;
+    display: inline-block
+}
+
+#user {
+    background-image: url(../images/name.svg);
+    background-repeat: no-repeat;
+    background-position: 10px 6px;
+    background-size: 22px 22px
+}
+
+.gui-bottom {
+    display: none
+}
+
+.breakWifiSSIDLogin {
+    overflow: hidden;
+    word-break: break-all;
+    line-height: 21px;
+    float: left;
+    max-height: 65px;
+    text-overflow: ellipsis
+}
+
+.usp-tile__description.small-ssid {
+    line-height: 21px;
+    font-size: 12px
+}
+
+.usp-tile__description.smaller-ssid {
+    line-height: 21px;
+    font-size: 9px
+}
+
+.name-prod {
+    cursor: pointer
+}
+
+.appleStoreLeft {
+    width: 48%
+}
+
+.googlePlayRight {
+    width: 48%;
+    float: right
+}
+
+.msg-error-time-out {
+    padding-left: 20px
+}
+
+.img-error {
+    position: relative;
+    top: 5px
+}
+
+.factoryResetContainer {
+    text-align: center;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    margin-top: 84px;
+    padding: 4px
+}
+
+.factoryResetMsg {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+    display: block;
+    font-size: 13px
+}
+
+.factoryReset {
+    font-family: Montserrat,Arial,Helvetica,sans-serif;
+    border: #116CB5 solid 2px;
+    cursor: pointer;
+    background-color: #133652;
+    color: #fff;
+    font-size: 12px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 700
+}
+
+.language-prod a.selected-lang {
+    text-decoration: underline
+}
+
+.t-center {
+    text-align: center
+}
+
+.restoreContainer {
+    text-align: center;
+    margin-top: 10px
+}
+
+.restoreBtn {
+    font-family: Montserrat,Arial,Helvetica,sans-serif;
+    width: 80%;
+    border: #fbfbfb solid 4px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+#button-grayed {
+    font-family: Montserrat,Arial,Helvetica,sans-serif;
+    float: left;
+    width: 100%;
+    border: #909090 solid 4px;
+    cursor: wait;
+    background-color: #c5bfbe;
+    color: #fbfbfb;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 700
+}
+
+.language-prod select {
+    background: rgba(72,72,72,.4);
+    color: #fff
+}
