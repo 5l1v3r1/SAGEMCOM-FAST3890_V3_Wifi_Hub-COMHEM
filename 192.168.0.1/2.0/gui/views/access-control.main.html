@@ -1,0 +1,97 @@
+<div class="columns medium-12 ng-hide" ng-show="true">
+	<div class="row">
+		<div id="header-page">
+			<div class="columns medium-6 small-10 custom-menu-title-size">
+				<h3 translate="accessControl">Access Control</h3>
+			</div>
+			<div class="columns medium-6 small-2 custom-menu-itens-size-pages text-right header-controls">
+				<span ng-if="reverseHeaderControls">
+					<a id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+					<a id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+					<div check-feature-state="showHeaderInternetConnectivity">
+						<div internet-connectivity=""></div>
+					</div>
+				</span>
+				<span ng-if="!reverseHeaderControls">
+					<div check-feature-state="showHeaderInternetConnectivity">
+						<div internet-connectivity=""></div>
+					</div>
+					<extended-menu ng-if="extendedMenus"></extended-menu>
+					<a ng-if="!extendedMenus" id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+					<a ng-if="!extendedMenus" id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div messagebox=""></div>
+	<div id="main-content">
+		<a class="shs" href="javascript:void(0)" translate="showSection">Show Sections</a>
+		<dl id="accessControlTab" class="tabs" data-tab="" tab-click="">
+			<dd style="display:none;" check-feature-state="parentalControl">
+				<a click-loading="" ui-sref="user.accessControl.parentalControl" translate="parentalControl">Parental Control</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="portForwarding">
+				<a click-loading="" ui-sref="user.accessControl.portForwarding" translate="portForwarding">Port Forwarding</a>
+			</dd>
+			
+			<dd style="display:none;" check-feature-state="portTriggering">
+				<a click-loading="" ui-sref="user.accessControl.portTriggering" translate="portTriggering" ng-if="!mapEnable">Port Triggering</a>
+			</dd>
+      <dd style="display:none;" check-feature-state="firewall">
+        <a click-loading="" ui-sref="user.accessControl.firewall" translate="firewall">Firewall</a>
+      </dd>
+      <dd style="display:none;" check-feature-state="ipFilterSplitFirewall">
+        <a click-loading="" ui-sref="user.accessControl.ipFilter">IP Filter</a>
+      </dd>
+			
+			<dd style="display:none;" check-feature-state="wifiMacFilter" ng-if="isComhem">
+				<a click-loading="" ui-sref="user.accessControl.wifi.mac-filter({radio : 'wifiBothBands', mode: 'priv'})" translate="macFilter">MAC Filter</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="dmz">
+				<a click-loading="" ui-sref="user.accessControl.dmz" translate="dmz" ng-if="!mapEnable">DMZ</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="wifiSecure">
+				<a click-loading="" ui-sref="user.accessControl.wifi-secure" translate="wifiSecure">Optus Wi-Fi Secure</a>
+			</dd>
+			
+			<dd style="display:none;" check-feature-state="userAccess">
+				<a click-loading="" ui-sref="user.accessControl.user" translate="user">User</a>
+			</dd>
+			
+			
+			
+			
+			<dd style="display:none;" check-feature-state="mySagemcomBoxAdvancedOptions">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.advancedOptions" translate="advancedOptions">Advanced</a>
+			</dd>
+			
+			<dd style="display:none;" check-feature-state="smartInterfaceRRM">
+				<a click-loading="" ui-sref="user.accessControl.smartInterfaceRRM">SmartInterface/RRM</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="wifi24Schedule">
+				<a click-loading="" ui-sref="user.accessControlScheduling.control({ scheduleType : 'wifiBothBands', mode: 'priv'})" translate="wifiScheduling">WiFi Scheduling</a>
+			</dd>
+			
+			
+			<dd style="display:none;" check-feature-state="sipAlg">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.sipAlg" translate="sip_alg">SIP ALG</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="dns">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.dns" translate="dns">DNS</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="dyndns">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.ddns">DynDNS</a>
+			</dd>
+			
+			
+			<dd check-feature-state="maintenance">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.maintenance" translate="maintenance">Maintenance</a>
+			</dd>
+			
+		</dl>
+		<div class="tabs-content" ui-view="">
+			&nbsp;
+		</div>
+	</div>
+</div>
+<script>$(document).foundation();</script>

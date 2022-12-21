@@ -1,0 +1,457 @@
+<div wait-loading=""></div>
+<div class="content active ng-hide" ng-show="!loading" id="deviceinfo">
+	<h5 translate="deviceinfo" class="title-h2">Device Info</h5>
+	<div class="row">
+		<div class="columns medium-8 small-12" id="deviceInfoTip1">
+			<table class="table-form table-vert">
+				<tr ng-if="deviceName">
+					<th translate="deviceName">Device Name</th>
+					<td ng-bind-template="{{deviceInfo.deviceName1}} {{deviceInfo.deviceName2}}"></td>
+				</tr>
+        <tr check-feature-state="serialAddressField">
+					<th width="40%" translate="serialNumber">Serial Number</th>
+					<td class="breakWord" ng-bind="deviceInfo.serialNumber==''?'-':deviceInfo.serialNumber"></td>
+				</tr>
+				<tr>
+					<th translate="hardwareVersion">Hardware Version</th>
+					<td ng-bind="deviceInfo.hardwareVersion==''?'-':deviceInfo.hardwareVersion"></td>
+				</tr>
+				<tr>
+					<th translate="softwareVersion">Software Version</th>
+					<td class="breakWord" ng-bind="deviceInfo.softwareVersion==''?'-':deviceInfo.softwareVersion"></td>
+                </tr>
+                
+				
+				
+				<tr ng-if="showOmciVersioning">
+					<th translate="omciVersioning">Version OMCI</th>
+					<td ng-bind="deviceInfo.omciVersioning != '' ? deviceInfo.omciVersioning : '-'"></td>
+				</tr>
+				<tr>
+					<th translate="uptime">UpTime</th>
+					<td ng-show="uptimeCounter"><time-counter time="deviceInfo.uptimeInSeconds"></time-counter></td>
+					<td ng-show="!uptimeCounter" hour-format="{{deviceInfo.upTime}}"></td>
+				</tr>
+				
+				<tr check-feature-state="WANMACaddressField">
+					<th translate="wanMACAddress">WAN MAC Address</th>
+					<td class="breakWord" ng-bind="deviceInfo.wanMacAddress==''?'-':deviceInfo.wanMacAddress"></td>
+				</tr>
+				<tr ng-if="modelName">
+					<th translate="modelName">Model Name</th>
+					<td ng-bind="deviceInfo.modelName==''?'-':deviceInfo.modelName"></td>
+				</tr>
+                
+				
+				
+			</table>
+		</div>
+	</div>
+	<hr>
+	<h5 translate="sNetwork" class="title-h2">Network</h5>
+	<div class="row">
+		<div class="columns medium-8 small-12" id="deviceInfoTip2">
+			<table class="table-form table-vert">
+				<tr ng-if="primaryModeEnable">
+					<th translate="primaryMode">primaryMode:</th>
+					<td class="breakWord" ng-bind="deviceInfo.primaryMode ? deviceInfo.primaryMode : '-'"></td>
+				</tr>
+				<tr>
+					<th width="40%" translate="localIpv4Address">Local IPv4 Address</th>
+					<td class="breakWord" ng-bind="deviceInfo.localIpv4 ? deviceInfo.localIpv4 : '-'"></td>
+				</tr>
+				<tr>
+					<th width="40%" translate="localSubnetMask">Local Subnet Mask</th>
+					<td class="breakWord" ng-bind="deviceInfo.localSubnetMask ? deviceInfo.localSubnetMask : '-'"></td>
+				</tr>
+				<tr>
+					<th width="40%" translate="localEthernetMac">Local Ethernet Mac Address</th>
+					<td class="breakWord" ng-bind="deviceInfo.localEthernetMac ? deviceInfo.localEthernetMac : '-'"></td>
+				</tr>
+				<tr>
+					<th translate="publicIpv4Address">Public IPv4 Address</th>
+					<td ng-if="!mapEnable" class="breakWord" ng-bind="deviceInfo.publicIpv4 ? deviceInfo.publicIpv4 :'-'"></td>
+					<td ng-if="mapEnable" class="breakWord" ng-bind="deviceInfo.publicIpv4MAPT ? deviceInfo.publicIpv4MAPT :'-'"></td>
+				</tr>
+				<tr>
+					<th translate="publicSubnetMask">Public Subnet Mask</th>
+					<td class="breakWord" ng-bind="deviceInfo.publicSubnetMask ? deviceInfo.publicSubnetMask : '-'"></td>
+				</tr>
+				<tr ng-if="ipv4OnlineDuration">
+					<th translate="ipv4Duration">IPv4 Online Duration</th>
+					<td class="breakWord" hour-format="{{deviceInfo.ipv4Duration}}"></td>
+				</tr>
+				<tr>
+					<th translate="defaultGateway">Default Gateway</th>
+					<td class="breakWord" ng-bind="deviceInfo.defaultGateway ? deviceInfo.defaultGateway : '-'"></td>
+				</tr>
+				<tr>
+					<th translate="PrimaryDNSServer">Primary DNS Server</th>
+					<td class="breakWord" ng-bind="deviceInfo.primaryDns ? deviceInfo.primaryDns : '-'"></td>
+				</tr>
+				<tr>
+					<th translate="secondaryDNSServer">Secondary DNS Server</th>
+					<td class="breakWord" ng-bind="deviceInfo.secondaryDns ? deviceInfo.secondaryDns : '-'"></td>
+				</tr>
+				<tr ng-if="deviceInfo.tertiaryDns">
+					<th translate="TertiaryDNSServer">Tertiary DNS Server</th>
+					<td class="breakWord" ng-bind="deviceInfo.tertiaryDns"></td>
+				</tr>
+				<tr ng-if="deviceInfo.quaternaryDns">
+					<th translate="QuaternaryDNSServer">Quaternary DNS Server</th>
+					<td class="breakWord" ng-bind="deviceInfo.quaternaryDns"></td>
+				</tr>
+
+        <tr check-feature-state="ipv6InfoDevice" ng-if="!isTalktalk && !isTLC">
+					<th translate="linkLocalIpv6">Link Local Gateway Address (IPv6):</th>
+					<td class="breakWord" ng-bind="deviceInfo.linkLocalIpv6 ? deviceInfo.linkLocalIpv6 : '-'"></td>
+                </tr>
+
+                <tr check-feature-state="ipv6InfoDevice" ng-if="isTLC">
+					<th translate="linkLocalIpv6">Link Local Gateway Address (IPv6):</th>
+					<td class="breakWord" ng-bind="resultLinkLocalIPv6Prefix ? resultLinkLocalIPv6Prefix : '-'"></td>
+				</tr>
+
+        <tr check-feature-state="ipv6InfoDevice" ng-if="!isTalktalk && !isTLC">
+					<th translate="globalGatewayAddressIpv6">Global Gateway Address (IPv6):</th>
+					<td class="breakWord" ng-bind="deviceInfo.globalLinkIpv6 ? deviceInfo.globalLinkIpv6 : '-'"></td>
+                </tr>
+                <tr check-feature-state="ipv6InfoDevice" ng-if="isTLC">
+					<th translate="globalGatewayAddressIpv6">Global Gateway Address (IPv6):</th>
+					<td class="breakWord" ng-bind="resultglobalGatewayIPv6Prefix ? resultglobalGatewayIPv6Prefix : '-'"></td>
+                </tr>
+
+        <tr check-feature-state="ipv6InfoDevice" ng-if="!isTalktalk">
+					<th translate="defaultGatewayAddressIpv6">Default Gateway IPv6 Address:</th>
+					<td class="breakWord" ng-bind="deviceInfo.defaultLinkIpv6 ? deviceInfo.defaultLinkIpv6 : '-'"></td>
+				</tr>
+        <tr check-feature-state="ipv6InfoDevice" ng-if="!isTalktalk">
+					<th translate="dnsServerAddressIpv6">DNS server IPv6 Address</th>
+					<td ng-bind="deviceInfo.dnsServerAddressIpv6 ? deviceInfo.dnsServerAddressIpv6 : '::'"></td>
+				</tr>
+        <tr check-feature-state="ipv6InfoDevice" ng-if="hasSecondaryIPv6Dns">
+					<th translate="secondaryDnsServerAddressIpv6">Secondary IPv6 DNS Server</th>
+					<td ng-bind="deviceInfo.secondaryDnsServerAddressIpv6 ? deviceInfo.secondaryDnsServerAddressIpv6 : '::'"></td>
+				</tr>
+        <tr check-feature-state="ipv6InfoDevice" ng-if="deviceInfo.tertiaryDnsServerAddressIpv6">
+					<th translate="tertiaryDnsServerAddressIpv6">Tertiary IPv6 DNS Server</th>
+					<td ng-bind="deviceInfo.tertiaryDnsServerAddressIpv6"></td>
+				</tr>
+		<tr check-feature-state="ipv6InfoDevice" ng-if="deviceInfo.quaternaryDnsServerAddressIpv6">
+					<th translate="quaternaryDnsServerAddressIpv6">Quaternary IPv6 DNS Server</th>
+					<td ng-bind="deviceInfo.quaternaryDnsServerAddressIpv6"></td>
+				</tr>
+        <tr check-feature-state="ipv6InfoDevice" ng-if="ipVersionStatus">
+					<th translate="ipVersion">IP Version:</th>
+					<td class="breakWord" ng-bind="deviceInfo.ipVersion ? deviceInfo.ipVersion : '-'"></td>
+				</tr>
+				<tr ng-if="displayConnectionStatus">
+					<th translate="ipv4ConnectionStatus">IPv4 connection status:</th>
+					<td class="breakWord" ng-bind="deviceInfo.ipv4Enable ? deviceInfo.ipv4Enable : '-'"></td>
+				</tr>
+        <tr check-feature-state="ipv6InfoDevice" ng-if="displayConnectionStatus">
+					<th translate="ipv6ConnectionStatus">IPv6 connection status:</th>
+					<td class="breakWord" ng-bind="deviceInfo.ipv6Enable ? deviceInfo.ipv6Enable : '-'"></td>
+				</tr>
+        <tr check-feature-state="ipv6InfoDevice" ng-if="displayIpv6DNSServers">
+					<th translate="ipv6PrimaryDNS">IPv6 primary DNS:</th>
+					<td class="breakWord" ng-bind="deviceInfo.ipv6PrimaryDns ? deviceInfo.ipv6PrimaryDns : '-'"></td>
+				</tr>
+        <tr check-feature-state="ipv6InfoDevice" ng-if="displayIpv6DNSServers">
+					<th translate="ipv6SecondaryDNS">IPv6 secondary DNS:</th>
+					<td class="breakWord" ng-bind="deviceInfo.ipv6SecondaryDns ? deviceInfo.ipv6SecondaryDns : '-'"></td>
+				</tr>
+				<tr ng-if="showIPversion">
+					<th translate="rsIpVersion">Version IP</th>
+					<td ng-bind="deviceInfo.ipVersionValue != '' ? deviceInfo.ipVersionValue : '-'"></td>
+				</tr>
+				
+				
+				<tr ng-if="ipVoip">
+					<th translate="voipIpv4Address">VOIP IPv4 Address:</th>
+					<td class="breakWord" ng-bind="deviceInfo.voipIpv4Address ? deviceInfo.voipIpv4Address : '-'"></td>
+				</tr>
+				<tr ng-if="ipTv">
+					<th translate="tvIpv4Address">TV IPv4 Address:</th>
+					<td class="breakWord" ng-bind="deviceInfo.tvIpv4Address ? deviceInfo.tvIpv4Address : '-'"></td>
+				</tr>
+				<tr ng-if="ipMgmt">
+					<th translate="mgmtIpv4Address">MGMT IPv4 Address:</th>
+					<td class="breakWord" ng-bind="deviceInfo.mgmtIpv4Address ? deviceInfo.mgmtIpv4Address : '-'"></td>
+				</tr>
+			</table>
+		</div>
+  </div>
+  
+  
+  
+	<hr ng-if="isNoWifi">
+	<h5 translate="wifi" ng-if="isNoWifi" class="title-h2">Wifi</h5>
+	<div class="row">
+		<div class="columns medium-8 small-12" id="deviceInfoTip3" ng-if="isNoWifi">
+			<table class="table-form table-vert">
+				<tbody>
+					<tr>
+						<th width="40%" translate="ssidWifi24">SSID Wifi 2.4 GHz</th>
+						<td class="breakWord" ng-bind="deviceInfo.wifi['wifi24'].ssid==''?'-':deviceInfo.wifi['wifi24'].ssid">&nbsp;</td>
+					</tr>
+					<tr>
+						<th translate="sStatus">Status</th>
+						<td><b ng-class="deviceInfo.wifi['wifi24'].status == 'Enabled' ? 'color-on' : 'color-off'" ng-bind="deviceInfo.wifi['wifi24'].status | lowercase | translate">&nbsp;</b></td>
+					</tr>
+					<tr>
+						<th translate="sUptime">Uptime</th>
+						<td hour-format="{{deviceInfo.wifi['wifi24'].uptime}}">&nbsp;</td>
+					</tr>
+					<tr>
+						<th translate="sMacaddres">MAC Address</th>
+						<td class="breakWord" ng-bind="deviceInfo.wifi['wifi24'].macAddress">&nbsp;</td>
+					</tr>
+					<tr>
+						<th translate="sMode">Mode</th>
+						<td>802.11 <span ng-bind="deviceInfo.wifi['wifi24'].operatingMode"></span></td>
+					</tr>
+					<tr ng-if="!isTalktalk" check-feature-state="bitrate">
+						<th translate="sBitrate">Bitrate</th>
+						<td><span ng-bind="deviceInfo.wifi['wifi24'].maxSpeed"></span> Mbps</td>
+					</tr>
+					<tr>
+						<th translate="sSecurity">Security</th>
+						<td ng-bind="deviceInfo.wifi['wifi24'].securityMode | lowercase | translate">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			<a ng-if="wifiResetStats" class="button tiny radius" translate="reset" ng-click="resetStats(deviceInfo.wifi['wifi24'].alias)">Reset</a>
+
+			<table class="table-form table-vert" ng-if="deviceInfo.wifi['wifi5'].ssid && wifi5gDeviceInfo">
+				<tbody>
+					<tr>
+						<th width="40%" translate="ssidWifi50">SSID Wifi 5.0 GHz</th>
+						<td class="breakWord" ng-bind="!deviceInfo.wifi['wifi5'].ssid ? '-' : deviceInfo.wifi['wifi5'].ssid">&nbsp;</td>
+					</tr>
+					<tr>
+						<th translate="sStatus">Status</th>
+						<td><b ng-class="deviceInfo.wifi['wifi5'].status == 'Enabled' ? 'color-on' : 'color-off'" ng-bind="deviceInfo.wifi['wifi5'].status | lowercase | translate">&nbsp;</b></td>
+					</tr>
+					<tr>
+						<th translate="sUptime">Uptime</th>
+						<td hour-format="{{deviceInfo.wifi['wifi5'].uptime}}">&nbsp;</td>
+					</tr>
+					<tr>
+						<th translate="sMacaddres">MAC Address</th>
+						<td class="breakWord" ng-bind="deviceInfo.wifi['wifi5'].macAddress">&nbsp;</td>
+					</tr>
+					<tr>
+						<th translate="sMode">Mode</th>
+						<td>802.11 <span ng-bind="deviceInfo.wifi['wifi5'].operatingMode"></span></td>
+					</tr>
+					<tr ng-if="!isTalktalk" check-feature-state="bitrate">
+						<th translate="sBitrate">Bitrate</th>
+						<td><span ng-bind="deviceInfo.wifi['wifi5'].maxSpeed"></span> Mbps</td>
+					</tr>
+					<tr>
+						<th translate="sSecurity">Security</th>
+						<td ng-bind="deviceInfo.wifi['wifi5'].securityMode | lowercase | translate">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			<a ng-if="wifiResetStats" class="button tiny radius" translate="reset" ng-click="resetStats(deviceInfo.wifi['wifi5'].alias)">Reset</a>
+
+			
+			<a ng-if="wifiResetStats" class="button tiny radius" translate="reset" ng-click="resetStats(deviceInfo.wifi['wifi24Guest'].alias)">Reset</a>
+
+			
+			<a ng-if="wifiResetStats" class="button tiny radius" translate="reset" ng-click="resetStats(deviceInfo.wifi['wifi5Guest'].alias)">Reset</a>
+		</div>
+	</div>
+	<hr check-feature-state="voicePorts" ng-if="voiceInformation">
+	<h5 check-feature-state="voicePorts" ng-if="voiceInformation" translate="vDTelephone" class="title-h2">Telephone</h5>
+	<div class="row" check-feature-state="voicePorts" ng-if="voiceInformation">
+		<div class="columns medium-8 small-12" id="deviceInfoTip4">
+			<table class="table-form table-vert" ng-repeat="telephone in deviceInfo.telephones | limitTo : maxLines">
+				<tr>
+					<th width="40%"><span translate="telephone"></span><span ng-bind="deviceInfo.telephones.length > 1 ? $index + 1 : ''">&nbsp;</span></th>
+					<td ng-if="!showAuthNameTelephony" ng-bind="telephone.DirectoryNumber ? telephone.DirectoryNumber : 'notAvailable' | translate"></td>
+					<td ng-if="showAuthNameTelephony" ng-show="!telephone.DirectoryNumber && !deviceInfo.authName" translate="notAvailable">notAvailable</td>
+					<td ng-if="showAuthNameTelephony" ng-show="telephone.DirectoryNumber && !deviceInfo.authName" translate="">{{telephone.DirectoryNumber}}</td>
+					<td ng-if="showAuthNameTelephony" ng-show="deviceInfo.authName">{{deviceInfo.authName}}</td>
+				</tr>
+				<tr>
+					<th width="40%" translate="telephoneStatus">Status</th>
+					<td><b ng-bind="telephone.Status === 'UP' ? 'registered' : 'notregistered' | lowercase | translate" ng-class="telephone.Status === 'UP' ? 'color-on' : 'color-off'"></b></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<hr ng-if="stbs">
+	<h5 ng-if="stbs" translate="stboxes" class="title-h2">Set-top Boxes</h5>
+	<table class="table-form responsive-table left" id="stb-table" ng-if="stbs">
+		<thead>
+			<tr class="header-table">
+				<th align="center" check-feature-state="stbManufaturer" translate="sManufacturer">Manufacturer</th>
+				<th align="center" translate="connectionStatus">Status</th>
+				<th align="center" translate="MACAddress">Mac Address</th>
+				<th align="center" translate="IPAddress">IP Address</th>
+				<th align="center" translate="connectionType">Connection Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="device in stbs">
+				<td data-title="Manufacturer" check-feature-state="stbManufaturer" ng-bind="device.manufacturer">&nbsp;</td>
+				<td data-title="Status" ng-switch="" on="device.active"><span ng-switch-when="true" translate="active">Active</span><span ng-switch-when="false" translate="pcInactive">Inactive</span></td>
+				<td data-title="Mac Address" ng-bind="device.PhysAddress">&nbsp;</td>
+				<td data-title="IP Address" ng-bind="device.ipAddress">&nbsp;</td>
+				<td data-title="Connection Type" ng-bind="device.InterfaceType">&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+	
+		
+		
+		<br>
+	</div>
+	<div ng-if="isModeGponSupported">
+		<h5 class="title-h2">GPON</h5>
+		<div class="row">
+			<div class="columns medium-8 small-12" id="deviceInfoTipWan">
+				<table class="table-form table-vert">
+				<tbody>
+					<tr>
+						<th translate="gponState" width="40%"></th>
+						<td ng-bind="deviceInfo.gponStatus.GponState"></td>
+					</tr>
+					<tr>
+						<th translate="gponOpticalSignalLevel"></th>
+						<td ng-bind="deviceInfo.gponStatus.OpticalSignalLevel"></td>
+					</tr>
+					<tr check-feature-state="isModeGponSupported">
+						<th translate="gponTransmitOpticalLevel"></th>
+						<td ng-bind="deviceInfo.gponStatus.TransmitOpticalLevel"></td>
+					</tr>
+					<tr ng-if="catvRxOpticalPower">
+						<th translate="CatvRxOpticalPower"></th>
+						<td ng-bind="deviceInfo.gponStatus.CatvRxOpticalPower"></td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div ng-if="mobileInformation">
+		<h5>Mobile Parameter</h5>
+		<div class="row">
+			<div class="columns medium-8 small-12" id="deviceInfoTipWan">
+				<table class="table-form table-vert">
+				<tbody>
+					<!---3G Information-->
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() == 'WCDMA'">
+						<th width="40%" colspan="2" translate="3gInformation">3G Information</th>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() == 'WCDMA'">
+						<th width="40%" translate="rscpLte">RSCP</th>
+						<td ng-bind="deviceInfo.mobileInformation.rscp ? deviceInfo.mobileInformation.rscp + ' dBm' : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() == 'WCDMA'">
+						<th width="40%" translate="rssiLte">RSSI</th>
+						<td ng-bind="deviceInfo.mobileInformation.rssi ? deviceInfo.mobileInformation.rssi + ' dBm' : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() == 'WCDMA'">
+						<th width="40%" translate="bandInfoLte">Band Info</th>
+						<td ng-bind="deviceInfo.mobileInformation.bandInfo ? deviceInfo.mobileInformation.bandInfo: 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() == 'WCDMA'">
+						<th width="40%" translate="cellId">Cell ID</th>
+						<td ng-bind="deviceInfo.mobileInformation.cellId ? deviceInfo.mobileInformation.cellId : 'N/A'"></td>
+					</tr>
+					<!--- LTE Information-->
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" colspan="2" translate="lteInformation">LTE Information</th>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="rsrpLte">RSRP</th>
+						<td ng-bind="deviceInfo.mobileInformation.rsrp ? deviceInfo.mobileInformation.rsrp + ' dBm' : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="rsrqLte">RSRQ</th>
+						<td ng-bind="deviceInfo.mobileInformation.rsrq ? deviceInfo.mobileInformation.rsrq + ' dBm' : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="rssiLte">RSSI</th>
+						<td ng-bind="deviceInfo.mobileInformation.rssi ? deviceInfo.mobileInformation.rssi + ' dBm' : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="sinrLte">SINR</th>
+						<td ng-bind="deviceInfo.mobileInformation.sinr ? deviceInfo.mobileInformation.sinr + ' dB' : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="bandInfoLte">Band Info</th>
+						<td ng-bind="deviceInfo.mobileInformation.bandInfo ? deviceInfo.mobileInformation.bandInfo: 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="lteBandwidthULDL">LTE Bandwidth (UL/DL)</th>
+                        <td ng-bind="deviceInfo.mobileInformation.lteBandwidthUL || deviceInfo.mobileInformation.lteBandwidthDL ? deviceInfo.mobileInformation.lteBandwidthUL + '/' + deviceInfo.mobileInformation.lteBandwidthDL + ' MHz': 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="cellId">Cell ID</th>
+						<td ng-bind="deviceInfo.mobileInformation.cellId ? deviceInfo.mobileInformation.cellId : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="3gPCI">PCI</th>
+						<td ng-bind="deviceInfo.mobileInformation.pci ? deviceInfo.mobileInformation.pci : 'N/A'"></td>
+					</tr>
+					<tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA'">
+						<th width="40%" translate="lteCAMode">LTE CA mode</th>
+                        <td ng-bind="deviceInfo.mobileInformation.lteCAMode == 'Yes' ? 'Yes' : 'No'"></td>
+					</tr>
+					<!--LTE CA mode Additional info-->
+                    <tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA' && deviceInfo.mobileInformation.lteCAMode == 'Yes'">
+						<th width="40%" colspan="2" translate="lteCAModeInformation">LTE CA mode additional information</th>
+					</tr>
+                    <tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA' && deviceInfo.mobileInformation.lteCAMode == 'Yes'">
+                        <th width="40%" translate="3gPCCBandInfo">PCC Band info</th>
+                        <td ng-bind="deviceInfo.mobileInformation.bandInfo ? deviceInfo.mobileInformation.bandInfo: 'N/A'"></td>
+                    </tr>
+                    <tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA' && deviceInfo.mobileInformation.lteCAMode == 'Yes'">
+                        <th width="40%" translate="PCCBandwidth">PCC Bandwidth info</th>
+                        <td ng-bind="deviceInfo.mobileInformation.lteBandwidthUL || deviceInfo.mobileInformation.lteBandwidthDL ? deviceInfo.mobileInformation.lteBandwidthUL + '/' + deviceInfo.mobileInformation.lteBandwidthDL + ' MHz': 'N/A'"></td>
+                    </tr>
+                    <tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA' && deviceInfo.mobileInformation.lteCAMode == 'Yes'">
+						<th width="40%" translate="SCC1BandInfo">SCC1 Band info</th>
+                        <td ng-bind="deviceInfo.mobileInformation.SCC1BandInfo !== -1024 ? deviceInfo.mobileInformation.SCC1BandInfo : 'N/A'"></td>
+					</tr>
+                    <tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA' && deviceInfo.mobileInformation.lteCAMode == 'Yes'">
+						<th width="40%" translate="SCC1Bandwidth">SCC1 Bandwidth info</th>
+                        <td ng-bind="deviceInfo.mobileInformation.SCC1Bandwidth != -1024 ? deviceInfo.mobileInformation.SCC1Bandwidth + ' Mhz' : 'N/A'"></td>
+					</tr>
+                    <tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA' && deviceInfo.mobileInformation.lteCAMode == 'Yes'">
+						<th width="40%" translate="SCC2BandInfo">SCC2 Band info</th>
+                        <td ng-bind="deviceInfo.mobileInformation.SCC2BandInfo !== -1024 ? deviceInfo.mobileInformation.SCC2BandInfo : 'N/A'"></td>
+					</tr>
+                    <tr ng-if="deviceInfo.mobileInformation.currentTechnology.toUpperCase() != 'WCDMA' && deviceInfo.mobileInformation.lteCAMode == 'Yes'">
+						<th width="40%" translate="SCC2Bandwidth">SCC2 Bandwidth info</th>
+                        <td ng-bind="deviceInfo.mobileInformation.SCC2Bandwidth != -1024 ? deviceInfo.mobileInformation.SCC2Bandwidth + ' Mhz' : 'N/A'"></td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+		
+	
+
+
+<!-- help button -->
+<ul id="tlyPageGuide">
+	<li translate="deviceInfoTip1" data-tourtarget="#deviceInfoTip1"></li>
+	<li translate="deviceInfoTip2" data-tourtarget="#deviceInfoTip2"></li>
+	<li translate="deviceInfoTip3" data-tourtarget="#deviceInfoTip3"></li>
+	<li translate="deviceInfoTip4" data-tourtarget="#deviceInfoTip4"></li>
+  <li translate="deviceInfoTip5" data-tourtarget="#deviceInfoTip5"></li>
+  <li translate="deviceInfoTip7" data-tourtarget="#deviceInfoTip7"></li>
+	<li translate="deviceInfoTip6" data-tourtarget="#deviceInfoTipWan"></li>
+</ul>
+

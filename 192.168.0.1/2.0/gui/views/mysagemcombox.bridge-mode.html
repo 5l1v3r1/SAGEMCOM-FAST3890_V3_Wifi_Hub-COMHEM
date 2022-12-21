@@ -1,0 +1,129 @@
+<div class="content" ng-show="true" id="bridge-sbox">
+	<form id="bridgeForm" name="bridgeForm" ng-submit="beforeSave()" check-unsaved>
+		<h4 class="maintitle" translate="bridgeMode">Bridge Mode</h4>
+
+		<div class="row" id="bridgeModeEnableHelp">
+			<div class="columns medium-3 small-4">
+				<label class="inline" for="enable-bridgeMode" translate="enableBridgeMode">Enable</label>
+			</div>
+
+			<div class="columns medium-2 small-8 end">
+				<div ng-class="bridgeEnable == null ? 'bt-disabled' : ''" class="onoffswitch">
+					<input id="enable-bridgeMode" class="onoffswitch-checkbox" name="onoffswitch" type="checkbox"
+						ng-disabled="bridgeEnable == null || isDisabledToChange()"
+						ng-model="bridgeEnable" />
+					<label class="onoffswitch-label" for="enable-bridgeMode"> <div class="onoffswitch-inner"></div> <div class="onoffswitch-switch"></div> </label>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" ng-show="hasBridgeModePreserveVLAN && bridgeEnable">
+			<div class="columns medium-3 small-4">
+				<label class="inline" for="preserve-vlan" translate="enableBridgeModePreserveVLAN">Preserve VLAN101</label>
+			</div>
+
+			<div class="columns medium-2 small-8 end">
+				<div class="onoffswitch">
+					<input id="preserve-vlan" class="onoffswitch-checkbox" name="onoffswitch" type="checkbox"
+						   ng-disabled="preserveVLAN == null || bridgeEnable == null || isDisabledToChange()"
+						   ng-model="preserveVLAN" />
+					<label class="onoffswitch-label" for="preserve-vlan"> <div class="onoffswitch-inner"></div> <div class="onoffswitch-switch"></div> </label>
+				</div>
+			</div>
+		</div>
+
+	<div ng-if="bridgeEnable && bridgeModeLANs">
+			<div class="row">
+				<div class="columns medium-3 small-4">
+					<label class="inline" for="enable-Lan1Enable"translate="enableBridgeModeLan1">LAN 1</label>
+				</div>
+
+					<div class="columns medium-2 small-8 end">
+						<div  class="onoffswitch">
+							<input   ng-model="field.lan1" class="onoffswitch-checkbox" id="enable-Lan1Enable" name="onoffswitch" type="checkbox"/>
+							<label class="onoffswitch-label" for="enable-Lan1Enable"> <div class="onoffswitch-inner"></div> <div class="onoffswitch-switch"></div> </label>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="columns medium-3 small-4">
+					<label class="inline" for="enable-Lan1Enable"translate="enableBridgeModeLan2">LAN 2</label>
+				</div>
+
+					<div class="columns medium-2 small-8 end">
+						<div  class="onoffswitch">
+							<input  ng-model="field.lan2" class="onoffswitch-checkbox" id="enable-Lan2Enable" name="onoffswitch" type="checkbox"/>
+							<label class="onoffswitch-label" for="enable-Lan2Enable"> <div class="onoffswitch-inner"></div> <div class="onoffswitch-switch"></div> </label>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="columns medium-3 small-4">
+					<label class="inline" for="enable-Lan3Enable"translate="enableBridgeModeLan3">LAN 3</label>
+				</div>
+
+					<div class="columns medium-2 small-8 end">
+						<div  class="onoffswitch">
+							<input  ng-model="field.lan3" class="onoffswitch-checkbox" id="enable-Lan3Enable" name="onoffswitch" type="checkbox"/>
+							<label class="onoffswitch-label" for="enable-Lan3Enable"> <div class="onoffswitch-inner"></div> <div class="onoffswitch-switch"></div> </label>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				<div class="columns medium-3 small-4">
+					<label class="inline" for="enable-Lan4Enable"translate="enableBridgeModeLan4">LAN 4</label>
+				</div>
+
+					<div class="columns medium-2 small-8 end">
+						<div  class="onoffswitch">
+							<input ng-model="field.lan4" class="onoffswitch-checkbox" id="enable-Lan4Enable" name="onoffswitch" type="checkbox"/>
+							<label class="onoffswitch-label" for="enable-Lan4Enable"> <div class="onoffswitch-inner"></div> <div class="onoffswitch-switch"></div> </label>
+						</div>
+					</div>
+			</div>
+    </div>
+
+		<div class="row">
+			<p ng-if="!showModalConfirm && !bridgeEnableDefault" class="columns medium-12 small-12 justified" translate="bridgeModeConfirmMsg">LAN port 4 will be bridged.</p>
+			<p ng-if="!!bridgeEnableDefault" class="columns medium-12 small-12 justified" translate="bridgeModeConfirmated">LAN port 4 is bridged</p>
+			<p class="columns medium-12 small-12 justified" translate="bridgeModeEnableTip">Please refresh the page after enabling or disabling Bridge Mode.</p>
+		</div>
+
+		<div class="right">
+			<button type="button" class="button tiny radius ng-scope" translate="cancel" click-loading ui-sref="user.home" id="cancelTip" ></button>
+			<button id="applyTip" class="button tiny radius ng-scope" translate="apply" type="submit">Apply</button>
+		</div>
+	</form>
+</div>
+
+<div id="confirm-bridge-mode" class="reveal-modal tiny" data-reveal>
+    <a class="close-reveal-modal close-modal" ng-click="closeModalConfirm('#confirm-bridge-mode')">
+			&#215;
+		</a>
+    <h5 class="modal-title" translate="applyChanges">&nbsp;</h5>
+    <p translate="bridgeModeConfirmMsg">
+        &nbsp;
+    </p>
+    <div class="right">
+        <button class="button tiny radius" type="button" translate="no" ng-click="closeModalConfirm('#confirm-bridge-mode')"></button>
+        <button class="button tiny radius" type="button" translate="yes" type="button" ng-click="save()"></button>
+    </div>
+</div>
+
+<div id="confirm-switch-bridge-mode" class="reveal-modal tiny" data-reveal>
+    <a class="close-reveal-modal close-modal" ng-click="closeModalConfirm('#confirm-switch-bridge-mode')">
+			&#215;
+	</a>
+    <h5 class="modal-title" translate="applyChanges">&nbsp;</h5>
+    <p translate="bridgeModeConfirmMsg2">
+        &nbsp;
+    </p>
+    <div class="right">
+        <button class="button tiny radius" type="button" translate="no" ng-click="closeModalConfirm('#confirm-switch-bridge-mode')"></button>
+        <button class="button tiny radius" type="button" translate="yes" type="button" ng-click="save()"></button>
+    </div>
+</div>
+
+<ul id="tlyPageGuide">
+	<li translate="bridgeModeHelp" data-tourtarget="#bridgeModeEnableHelp"></li>
+</ul>

@@ -1,0 +1,128 @@
+<!--
+Copyright : (C) 2014 Sagemcom - URD2
+
+This software and source file is the property of Sagemcom
+and may not be copied or used without prior written consent.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8" />
+  <meta name="sagemcom" content="oui" />
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,user-scalable=no,user-scalable=0"
+  />
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <base href="" id="baseHref" />
+  <script>
+    var initialRegex = /(.*)\/.*.html/i;
+    var baseHref = initialRegex.exec(window.location.pathname);
+    var usethis = window.location.pathname;
+    if (baseHref) {
+      usethis = baseHref[1] + '/';
+    }
+    document.getElementById("baseHref").href = usethis;
+  </script>
+  <style>
+    meta.foundation-data-attribute-namespace {
+      font-family: false;
+    }
+  </style>
+
+  <link id="favicon" rel="shortcut icon" href="images/faviconNone.ico" />
+
+  <title></title>
+
+  <script>
+    window.onerror = function (msg, url, line, col, error) {
+      if (typeof SboxInterface !== 'undefined') {
+        SboxInterface.RemoveLoader();
+        setTimeout(function () {
+          if (document.getElementById('main-ui-view').innerHTML.length === 0) {
+            SboxInterface.processHTML('retry');
+          }
+        }, 1000);
+      }
+      return false;
+    };
+  </script>
+
+  <script src="js/vendor.js?e6036d6ce1b038aa"></script>
+
+  <script>
+    // fix for old code in gui-core relying on $.browser
+    if (typeof (jQuery) != 'undefined') {
+      jQuery.browser = {};
+      jQuery.browser.msie = false;
+      jQuery.browser.version = 0;
+      if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+      } else if (!!navigator.userAgent.match(/Trident\/7\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = 11;
+      } else if (navigator.userAgent.match(/Edge/)) {
+        jQuery.browser.edge = true;
+      }
+    } else {
+      jQuery = {};
+      jQuery.browser = {};
+      jQuery.browser.msie = true;
+      jQuery.browser.version = 8;
+    }
+    svg4everybody();
+  </script>
+  <script src="js/libs.js?d7fb1be4f5e19871"></script>
+
+  <script src="js/jquery-utils.js"></script>
+  <script src="js/gui-core.js"></script>
+  <script src="js/gui-api.js"></script>
+  <script src="js/gui-widgets.js"></script>
+
+  <script src="js/xmo.js?b4dd86fa5188cd86"></script>
+
+  <script src="js/scripts.js?f6a5fed28a60ed64"></script>
+
+  <script src="js/config.js?9fca0d82eb2f137a"></script>
+
+  <link rel="stylesheet" href="styles/vendor.css">
+
+  <link rel="stylesheet" href="styles/lib.css">
+
+  
+
+  <!--[if IE 8]>
+	<link rel="stylesheet" href="../styles/foundation-ie8.css" />
+	<![endif]-->
+
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" id="main-theme" href="" />
+
+
+
+  <link rel="stylesheet" href="styles/dev.css">
+</head>
+
+<body ng-app="sboxApp" ng-class="isMainTemplate ? '' : 'bg-gradient'" class="bg-gradient-force">
+  <div wait></div>
+  <div id="main-ui-view" class="zoomViewport" ui-view></div>
+  <script type="text/javascript">
+    //IE 11- / EDGE HACK
+    //PROBLEM: when we reopen the session in IE and EDGE they do not process all the javascript and css correctly and shows the GUI broken
+    //SOLUTION: the malformed page always have the logout button but it is hidden, we check it and if we are in IE or EDGE and redirect the user to the main page and reload the page
+    setTimeout(function () {
+      if ((jQuery.browser.msie || jQuery.browser.edge) && $('#btn-logout').length && !$('#btn-logout').is(':visible') && $('#head-container').is(':visible') && window.location.hash.indexOf('login') === -1) {
+        window.location = '';
+      }
+    }, 500);
+  </script>
+  <noscript>
+    <h2 class="noscript">
+      Your modem interface can not be displayed correctly because either your browser does not support scripts or there is some browser add on blocking them, for the correct operation of the interface please check if your browser supports scripts , if the browser is blocking the execution of scripts or if one of the add ons installed in your browser is blocking this page to run scripts.
+    </h2>
+  </noscript>
+</body>
+
+</html>

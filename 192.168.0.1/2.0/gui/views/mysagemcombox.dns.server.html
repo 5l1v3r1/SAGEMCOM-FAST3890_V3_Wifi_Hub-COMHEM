@@ -1,0 +1,140 @@
+<div wait-loading></div>
+<div class="content active ng-hide" ng-show="!loading" id="dns-server">
+    <h4 translate="staticDnsServer">&nbsp;</h4>
+    <div class="row" ng-if="!newDNS">
+        <div class="columns medium-9 small-12 large-9">
+            <div class="alert-box warning medium radius" data-alert>
+                <i class="fa fa-info-circle fa-center"></i>
+                <span translate="DNSServerWarning"></span>
+            </div>
+        </div>
+    </div>
+	<form name="dnsServer" ng-submit="save()" check-unsaved>
+		<div ng-if="dnsAvailableButton">
+			<div class="row" ng-if="!selectButton">
+				<div class="columns medium-5 small-5">
+					<label class="inline" for="upnp-igd" translate="enable">Enable</label>
+				</div>
+				<div class="columns medium-7 small-7 end">
+					<div class="onoffswitch" id="idTip1">
+						<input ng-model="dns.enable" id="upnp-igd" ng-change="updateDNSValues()" name="dnsSwitch" class="onoffswitch-checkbox no-fastclick" type="checkbox" ng-disabled="!editDNS" ng-class="{'disabled-input':!editDNS}"/>
+						<label class="onoffswitch-label" for="upnp-igd">
+							<div class="onoffswitch-inner"></div>
+							<div class="onoffswitch-switch"></div>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-if="selectButton">
+				<div class="columns medium-5 small-12">
+				<label class="inline">DNS</label>
+				</div>
+
+				<div class="columns medium-5 small-12 end large-4">
+					<select id="dnsType" ng-model="dnsType" ng-change="changeDnsType()">
+						<option value="DHCP" translate="obtainDns"></option>
+						<option value="STATIC" translate="manualDns"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div id="idTip2" ng-show="!dnsDHCP">
+			<div class="row">
+				<div class="columns medium-5 small-12">
+					<label class="inline" translate="PrimaryDNSServer">&nbsp;</label>
+				</div>
+				<div class="columns medium-5 small-12 end large-4 primary-dns-select">
+					<input validate-ip="{{validate}}" ng-model="dns.primary" type="text" name="primary" ng-disabled="!dns.enable || !editDNS" />
+					<small class="error" ng-if="dnsServer.primary.$invalid && (dnsServer.primary.$dirty || submitted)" translate="invalidIpAddress">Invalid IP Address</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="columns medium-5 small-12">
+					<label translate="secondaryDNSServer">&nbsp;</label>
+				</div>
+				<div class="columns medium-5 small-12 end large-4">
+					<input validate-ip="not.required" ng-model="dns.secondary" name="secondary" type="text" ng-disabled="!dns.enable || !editDNS"/>
+					<small class="error" ng-if="dnsServer.secondary.$invalid && dnsServer.secondary.$dirty" translate="invalidIpAddress">Invalid IP Address</small>
+				</div>
+			</div>
+		</div>
+		<div id="idTip2" ng-show="dnsDHCP">
+			<div class="row">
+				<div class="columns medium-5 small-4">
+					<label class="inline" translate="PrimaryDNSServer">&nbsp;</label>
+				</div>
+				<div class="columns medium-3 small-8 end">
+					<input ng-model="dns.primaryDHCP" type="text" name="primaryDHCP" ng-disabled="true" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="columns medium-5 small-4">
+					<label translate="secondaryDNSServer">&nbsp;</label>
+				</div>
+				<div class="columns medium-3 small-8 end">
+					<input ng-model="dns.secondaryDHCP" name="secondaryDHCP" type="text" ng-disabled="true"/>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row" ng-if="editDNS">
+			<div class="right">
+				<button class="button tiny radius btn-cancel" type="button" translate="cancel" id="cancelTip" click-loading ui-sref="user.home">
+					Cancel
+				</button>
+				<button type="button" class="button tiny radius ng-hide" ng-show="checkParentalControl()" ng-click="showModal()" translate="apply" id="applyTip" ></button>
+        <button class="button tiny radius ng-hide" type="submit" ng-show="!checkParentalControl() && !showAlertMessage" translate="apply" id="applyTip"></button>
+        <button class="button tiny radius ng-hide" type="button" ng-show="showAlertMessage" ng-click="beforeSave()" translate="apply">Aplicar</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!-- Modal for confirm before saving -->
+<div id="confirm-apply-changes-dns-modal" class="reveal-modal tiny" data-reveal>
+	<a class="close-reveal-modal close-modal">
+		<span class="btn-close">&#215;</span>
+		<span class="show-word btn-close close" translate="close">Close</span>
+	</a>
+	<h5 class="modal-title" translate="applyChanges">&nbsp;</h5>
+	<p translate="alertMessageDNS">
+		&nbsp;
+	</p>
+	<div class="right">
+		<button class="button tiny radius btn-cancel" type="button" translate="no" ng-click="resetValues()" id="idNo" onclick="$('#apply-changes-dns-modal a.close-reveal-modal').trigger('click');" ></button>
+		<button class="button tiny radius" type="button" translate="yes" id="idYes" ng-click="save()" onclick="$('#apply-changes-dns-modal a.close-reveal-modal').trigger('click');"></button>
+	</div>
+</div>
+
+<!-- Modal for save -->
+<div id="apply-changes-dns-modal" class="reveal-modal tiny" data-reveal="">
+	<a class="close-reveal-modal close-modal">
+		<span class="btn-close">&#215;</span>
+		<span class="show-word btn-close close" translate="close">Close</span>
+	</a>
+	<h5 class="modal-title" translate="applyChanges">&nbsp;</h5>
+	<p translate="applyDNSChangesDescription">
+		&nbsp;
+	</p>
+	<div class="right">
+		<button class="button tiny radius btn-cancel" type="button" translate="no" id="idNo" onclick="$('#apply-changes-dns-modal a.close-reveal-modal').trigger('click');" ></button>
+		<button class="button tiny radius" type="button" translate="yes" id="idYes" ng-click="save()" onclick="$('#apply-changes-dns-modal a.close-reveal-modal').trigger('click');"></button>
+	</div>
+</div>
+
+<!-- help button -->
+<ul id="tlyPageGuide">
+	<li translate="dnsTip1" data-tourtarget="#idTip1">
+	</li>
+	<li translate="dnsTip2" data-tourtarget="#idTip2">
+	</li>
+	<li translate="cancelTip" data-tourtarget="#cancelTip">
+	</li>
+	<li translate="applyTip" data-tourtarget="#applyTip">
+	</li>
+</ul>
+
+<script>
+	Foundation.libs.reveal.settings.close_on_background_click = false;
+	$(document).foundation();
+</script>

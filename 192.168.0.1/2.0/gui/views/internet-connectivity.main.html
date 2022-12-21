@@ -1,0 +1,95 @@
+<div class="columns large-12 medium-12 small-12 ng-hide" ng-show="true">
+	<div class="row">
+		<div id="header-page">
+			<div class="columns custom-menu-title-size medium-6">
+				<h3 translate="internetConnectivity">Internet Connectivity</h3>
+			</div>
+
+			<div class="columns custom-menu-itens-size-pages medium-6 text-right header-controls">
+				<span ng-if="reverseHeaderControls">
+					<a id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+					<a id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+					<div check-feature-state="showHeaderInternetConnectivity">
+						<div internet-connectivity=""></div>
+					</div>
+				</span>
+				<span ng-if="!reverseHeaderControls">
+					<div check-feature-state="showHeaderInternetConnectivity">
+						<div internet-connectivity=""></div>
+					</div>
+					<extended-menu ng-if="extendedMenus"></extended-menu>
+					<a ng-if="!extendedMenus" id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+					<a ng-if="!extendedMenus" id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+				</span>
+			</div>
+
+		</div>
+	</div>
+	<div messagebox=""></div>
+	<div id="main-content">
+		<a class="shs" href="javascript:void(0)" translate="showSection">Show Sections</a>
+		<dl id="internetConnectiviyTab" class="tabs" ng-class="changeToVertical ? 'vertical' : ''" data-tab="" tab-click="">
+            <dd style="display:none;" check-feature-state="statistics">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.status" translate="sStatus">Status</a>
+            </dd>
+            <dd class="active" style="display:none;" check-feature-state="wanSection">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.wanSection" translate="wan_section"> Wan</a>
+			</dd>
+            <dd style="display:none;" check-feature-state="4gBackup">
+                <a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.4g">4G Backup</a>
+            </dd>
+			<dd style="display:none;" check-feature-state="internetConnectivityWanBasic">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.basic" translate="basic_wan_status">Basic</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="connectionPage">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.connection" translate="">Connection</a>
+			</dd>
+			
+			
+			<dd style="display:none;" check-feature-state="internetConnectivityVoipMngt">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.voipMngtInfo" translate="voipMngtTab">Voice & management Interface</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="internetConnectivityIptvMngt">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.iptvInfo" translate="iptvMngtTab">IPTV Interface</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="internetConnectivityVLAN">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.vlan" translate="vlanConfiguration">VLAN Configuration</a>
+			</dd>
+			<dd check-feature-state="docsis">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.docsis" translate="docsis">DOCSIS</a>
+			</dd>
+			
+			
+      <dd style="display:none;" check-feature-state="backup3gLTESplitted">
+        <a href="javascript:void(0)" translate="g3Backup" click-loading="" ui-sref="user.internetConnectivity.splitted3g">3G/LTE Backup</a>
+      </dd>
+			<dd style="display:none;" check-feature-state="trafficSpeed" ng-if="!(isFTTHMode&&isMyrepublic)">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.trafficSpeed" translate="trafficSpeedMonitoring">Traffic Speed Monitoring</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="bridgemodeInternetPage">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.bridgemodeInternetPage" translate="bridgeMode">Bridge Mode</a>
+			</dd>
+			
+			
+			
+			<dd style="display:none;" check-feature-state="MACAddressofActiveinterfaces">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.MACAddressofActiveinterfaces" translate="MACAddressofActiveinterfaces">MAC Address of Active interfaces</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="ploamPassword">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.ploampassword" translate="PloamPassword">PLOAM Password</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="GRETunnel">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.internetConnectivity.greTunnel" translate="GRETunnel">GRE Tunnel</a>
+			</dd>
+			
+			
+			<dd style="display:none;" check-feature-state="vpnServer">
+				<a click-loading="" ui-sref="user.internetConnectivity.vpnServer">VPN Server</a>
+			</dd>
+		</dl>
+
+		<div class="tabs-content internet-connectivity" data-tab-content="" ui-view="">
+
+		</div>
+	</div>
+</div>

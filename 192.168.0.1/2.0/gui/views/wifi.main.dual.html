@@ -1,0 +1,88 @@
+<div class="columns medium-12 ng-hide" ng-show="true">
+		<div class="row">
+			<div id="header-page">
+				<div class="columns custom-menu-title-size medium-6">
+					<h3 class="subTitle" ng-class="mode === 'guest' ? 'wifiGuestTitle' : ''">
+						<span translate="wifi" ng-if="!isCustomTitle()"></span>
+						<span ng-if="isCustomTitle()">{{ customTitle | translate}}</span>
+						&nbsp;
+						<span ng-if="!removeBandTitle">{{ title | translate}}</span>
+					</h3>
+					<h3 ng-if="mode === 'guest'" ng-class="mode === 'guest' ? 'wifiGuestTitle' : ''" translate="guest"></h3>
+				</div>
+				<div class="columns custom-menu-itens-size-pages medium-6 text-right header-controls">
+					<span ng-if="reverseHeaderControls">
+						<a id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+						<span ng-show="showRefreshButton" class="refresh-button">
+							<a id="refreshContent" class="btn-refresh" call-controller-method="refreshContent">
+								<img src="images/refresh.png">
+								<span translate="refresh">Refresh</span>
+							</a>
+						</span>
+						<a id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+						<div check-feature-state="showHeaderInternetConnectivity">
+							<div internet-connectivity=""></div>
+						</div>
+					</span>
+					<span ng-if="!reverseHeaderControls">
+						<div check-feature-state="showHeaderInternetConnectivity">
+							<div internet-connectivity=""></div>
+						</div>
+						<extended-menu ng-if="extendedMenus"></extended-menu>
+						<a ng-if="!extendedMenus" id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+						<a ng-if="!extendedMenus" id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+					</span>
+				</div>
+
+			</div>
+		</div>
+  <div messagebox=""></div>
+		<div id="main-content">
+			<a class="shs" href="javascript:void(0)" translate="showSection">Show Sections</a>
+			<dl id="wifiTab" class="tabs" data-tab="" ng-hide="hideTabBar">
+            	<dd class="active" style="display:none;" check-feature-state="wifiBasic" ng-show="radioName !== '5GHzExt'">
+					<a click-loading="" ui-sref="user.wifi.basic({radio : radioName, mode: mode})" ng-if="!!maintitle">{{ maintitle | translate }}</a>
+					<a click-loading="" ui-sref="user.wifi.basic({radio : radioName, mode: mode})" ng-if="!maintitle" translate="basic">Basic</a>
+				</dd>
+				<dd class="active" style="display:none;" check-feature-state="wifiBasic" ng-show="radioName === '5GHzExt'">
+					<a click-loading="" ui-sref="user.wifi.basicExtra({radio : radioName, mode: mode})" translate="basic">Basic</a>
+				</dd>
+				<dd class="active" style="display:none;" check-feature-state="wifiBandSteering" ng-hide="(mode === 'guest' || mode === 'mpls') || (mode === 'guest' && radioName === '5GHzExt')">
+					<a click-loading="" ui-sref="user.wifi.bandsteering({radio : radioName, mode: mode})" translate="BandSteering">BandSteering</a>
+				</dd>
+                <dd class="active" style="display:none;" check-feature-state="wifiMesh" ng-show="mode !== 'guest' && mode !== 'mpls'">
+                    <a click-loading="" ui-sref="user.wifi.mesh({radio : radioName, mode: mode})" translate="wifiMesh">Wifi Mesh</a>
+                </dd>
+				<dd style="display:none;" check-feature-state="wifiWPS" ng-if="mode !== 'guest' && mode !== 'mpls'">
+					<a click-loading="" ui-sref="user.wifi.wps({radio : radioName, mode: mode})" translate="wps">WPS</a>
+				</dd>
+				<dd style="display:none;" check-feature-state="wifiStats" ng-hide="mode === 'guest' && wifiStatsGuest">
+					<a click-loading="" ui-sref="user.wifi.stats({radio : radioName, mode: mode})" translate="wifiStats">WiFi Stats</a>
+				</dd>
+				<dd style="display:none;" check-feature-state="wifiAdvanced" ng-hide="hideAdvancedTab">
+					<a click-loading="" ui-sref="user.wifi.advanced({radio : radioName, mode: mode})" translate="advanced">Advanced</a>
+				</dd>
+				<dd style="display:none;" check-feature-state="wifiAdvanced">
+					<a click-loading="" ui-sref="internal.wifi.advanced({radio : radioName, mode: mode})" translate="advanced">Advanced</a>
+				</dd>
+				<dd style="display:none;" check-feature-state="wifiMacFilter" ng-if="macfilterDual">
+					<a click-loading="" ui-sref="user.wifi.mac-filter({radio : 'wifiBothBands', mode: mode})" translate="macFilter">MAC Filter</a>
+                </dd>
+                <dd style="display:none;" check-feature-state="wifiMacFilter" ng-if="!macfilterDual">
+					<a click-loading="" ui-sref="user.wifi.mac-filter({radio : radioName, mode: mode})" translate="macFilter">MAC Filter</a>
+				</dd>
+				<dd style="display:none;" check-feature-state="wifi24Schedule" ng-hide="(mode === 'guest' || mode === 'mpls') && doNotDisplayWifiSchedulingInGuest">
+					<a click-loading="" ui-sref="user.scheduling.control({scheduleType : 'wifiBothBands', mode: mode})" translate="wifiScheduling">WiFi Scheduling</a>
+				</dd>
+				<dd style="display:none;" check-feature-state="wirelessEnvironment" ng-hide="(mode === 'guest' || mode === 'mpls') && communSettingsGuest">
+					<a click-loading="" ui-sref="user.wifi.environment.scan({radio : radioName, mode: mode})" translate="wirelessEnviroment">Wireless Environment</a>
+				</dd>
+				
+				
+				
+			</dl>
+			<div class="tabs-content" ui-view="">
+				&nbsp;
+			</div>
+		</div>
+	</div>

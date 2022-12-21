@@ -1,0 +1,21 @@
+<div class="content active ng-hide" ng-show="true" id="port-forwarding">
+	<a class="shs" href="javascript:void(0)" translate="showSubSection">Show Subsections</a>
+	<dl id="portForwardingTab" style="display: none;" class="tabs sub-tabs" ng-class="changeToVertical ? 'vertical' : ''" data-tab tab-click>
+		<dd class="active" ng-hide="uid" check-feature-state="portForwardingAddRule">
+			<a href="javascript:void(0)" click-loading ui-sref="user.accessControl.portForwarding.addRule" translate="pfAddRule">Add Rule</a>
+		</dd>
+		<dd ng-hide="uid" style="display: none;" check-feature-state="gamesAndApps">
+			<a href="javascript:void(0)" click-loading ui-sref="user.accessControl.portForwarding.gamesApp" translate="pfGamesApps">Games & Applications</a>
+		</dd>
+		<dd class="active" style="display: none;" ng-hide="uid" check-feature-state="portForwardingAddRule">
+			<a href="javascript:void(0)" click-loading ui-sref="user.networkSettings.portForwarding.addRule" translate="pfAddRule">Add Rule</a>
+		</dd>
+		<dd ng-hide="uid" style="display: none;" check-feature-state="gamesAndApps">
+			<a href="javascript:void(0)" click-loading ui-sref="user.networkSettings.portForwarding.gamesApp" translate="pfGamesApps">Games & Applications</a>
+		</dd>
+	</dl>
+	<div class="tabs-content port-forwarding-content">
+		<div class="content" ui-view></div>
+	</div>
+</div>
+<script>$(document).foundation();</script>

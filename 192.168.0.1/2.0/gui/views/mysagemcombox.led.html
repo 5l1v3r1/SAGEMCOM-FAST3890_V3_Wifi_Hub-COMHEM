@@ -1,0 +1,33 @@
+<div class="content" id="led">
+  <h4 translate="lightControl">LED Lights</h4>
+  <form name="ledForm" ng-submit="save()" check-unsaved="">
+	
+	<div check-feature-state="ledMode" class="row">
+		<div class="columns large-2 medium-2 small-4">
+			<label class="inline" translate="hubLight">Dark Mode / Always ON</label>
+		</div>
+		<div class="columns large-3 medium-2 small-8 end">
+				<div check-feature-state="ledMode" class="row">
+					<select id="pt-protocol" ng-model="ledMode" name="ledMode" ng-disabled="fields.nService">
+						<option translate="ledModeOptionDark">Dark</option>
+						<option translate="ledModeOptionLight">Light</option>
+					</select>
+				</div>
+		</div>
+	</div>
+	<p check-feature-state="ledMode" translate="ledPageInfo">The front LEDs indicate different functions of the device. It can be set in two modes: Dark mode – after 5 minutes of normal activity, the status LEDs will turn off and the power LED will turn blue. If any error occurs, or the WiFi/WPS button is pushed, LEDs will light up again. Always on – status LEDs will always indicate device status.</p>
+	<div class="right" ng-show="!onChangeSave">
+		<button class="button tiny radius btn-cancel" type="button" translate="cancel" id="cancelTip" click-loading="" ui-sref="user.home">
+			Cancel
+		</button>
+		<button class="button tiny radius" type="submit" translate="apply">
+			Apply
+		</button>
+  </div>
+  </form>
+</div>
+
+<!-- help button -->
+<ul id="tlyPageGuide">
+	<li translate="ledTip1" data-tourtarget="#ledTip1"></li>
+</ul>

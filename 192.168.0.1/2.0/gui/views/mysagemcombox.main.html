@@ -1,0 +1,118 @@
+<div class="columns medium-12 ng-hide" ng-show="true">
+	<div class="row">
+		<div id="header-page">
+			<div class="columns custom-menu-title-size medium-6">
+				<h3 ng-if="!titlePage" translate="mySagemcomBox">&nbsp;</h3>
+				<h3 ng-if="titlePage" id="titlePage" ng-bind="titlePage">&nbsp;</h3>
+			</div>
+			<div class="columns custom-menu-itens-size-pages medium-6 text-right header-controls header-controls-icons">
+				<span ng-if="reverseHeaderControls">
+					<a id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+					<span ng-show="showRefreshButton" class="refresh-button">
+						<a id="refreshContent" class="btn-refresh" call-controller-method="refreshContent">
+			                <img src="images/refresh.png">
+							<span translate="refresh">Refresh</span>
+			            </a>
+					</span>
+					<a id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+					<div check-feature-state="showHeaderInternetConnectivity">
+						<div internet-connectivity=""></div>
+					</div>
+				</span>
+				<span ng-if="!reverseHeaderControls">
+					<div check-feature-state="showHeaderInternetConnectivity">
+						<div internet-connectivity=""></div>
+					</div>
+					<extended-menu ng-if="extendedMenus"></extended-menu>
+					<a ng-if="!extendedMenus" id="wifibtn" check-feature-state="headerControlsWifi" data-title="{{'wifi' | translate }}" class="icons-bg border-gray" click-loading="" ui-sref="user.wifi.basic({radio : '2.4GHz', mode: 'priv'})"></a>
+					<a ng-if="!extendedMenus" id="homebtn" title="Home" class="icons-bg border-gray" click-loading="" ui-sref="user.home"> <img src="images/icon-home.png" alt="Home Icon"> </a>
+				</span>
+			</div>
+
+		</div>
+	</div>
+	<div messagebox=""></div>
+	<div id="main-content">
+		<a class="shs" href="javascript:void(0)" translate="showSection">Show Sections</a>
+		<dl id="mySagemcomBoxTab" class="tabs" data-tab="" tab-click="">
+      <dd class="active" check-feature-state="deviceInfo">
+        <a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.deviceInfo" translate="deviceinfo">Device Info</a>
+      </dd>
+      
+      <dd class="active" check-feature-state="meshSettings">
+        <a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.mesh">Mesh settings</a>
+      </dd>
+			<dd style="display:none;" check-feature-state="lanIpv4">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.dhcp" translate="lanIpv4">LAN IPv4</a>
+			</dd>
+			
+			<dd style="display:none;" check-feature-state="lanDhcpv6">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.lanDhcpv6" translate="dhcpv6">DHCPv6</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="lanIpv6Router">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.lanIpv6Router" ng-bind="'LAN IPv6'">LAN IPv6</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="led">
+        <a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.led" translate="lightControl">Light control</a>
+      </dd>
+      <dd style="display:none;" check-feature-state="ledDimmed">
+        <a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.ledDimmed" translate="dimmedMode">Dimmed mode</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="ledSlider">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.ledSlider" translate="lightControl">Light control</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="sipAlg">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.sipAlg" translate="sip_alg">SIP ALG</a>
+			</dd>
+			
+			<dd style="display:none;" check-feature-state="dns">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.dns" translate="dns">DNS</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="dns">
+				<a href="javascript:void(0)" click-loading="" ui-sref="admin.mysagemcombox.dns" translate="dns">DNS</a>
+			</dd>
+			
+			<dd style="display:none;" check-feature-state="dyndns">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.ddns">DynDNS</a>
+			</dd>
+			
+			
+			
+			
+			
+			<dd check-feature-state="maintenance">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.maintenance" translate="maintenance">Maintenance</a>
+			</dd>
+			
+			
+			<dd check-feature-state="interfaceGrouping">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.interfaceGrouping" translate="interfaceGrouping">Interface Grouping</a>
+			</dd>
+			
+			<dd style="display:none;" check-feature-state="mySagemcomBoxAdvancedOptions">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.advancedOptions" translate="advancedOptions">Advanced</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="fon">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.fon" translate="sFON">Telstra Air</a>
+      </dd>
+      
+			
+			
+			<!-- voip settings for siminn -->
+			<dd style="display:none;" check-feature-state="telephoneMatrix">
+				<a href="javascript:void(0)" click-loading="" ui-sref="voip.mysagemcombox.telephones">Telephone Matrix</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="callSettings">
+				<a href="javascript:void(0)" click-loading="" ui-sref="voip.mysagemcombox.callsettings">Call log</a>
+			</dd>
+			<dd style="display:none;" check-feature-state="callSettingsAdvanced">
+				<a href="javascript:void(0)" click-loading="" ui-sref="voip.mysagemcombox.settings">Advanced</a>
+			</dd>
+		</dl>
+
+		<div class="tabs-content" ui-view="">
+			&nbsp;
+		</div>
+	</div>
+</div>
+<script>$(document).foundation();</script>

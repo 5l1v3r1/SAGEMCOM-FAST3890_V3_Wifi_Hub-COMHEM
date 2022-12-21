@@ -1,0 +1,133 @@
+<div wait-loading></div>
+<div class="content active no-padding ng-hide" id="cablemodem-deviceinformation" aria-hidden="false" ng-show="!loading">
+    <div><div bread-crumbs></div></div>
+    <div ng-if="netparams">
+        <table class="table-form table-vert table-left" id="initializationProcedureTable">
+            <thead>
+                <tr>
+                    <th colspan="2" translate="initializationProcedure">Initialization Procedure</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th width="40%" translate="initializeHardware">Initialize Hardware</th>
+                    <td><span class="icon-status icon-checked"></span></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="acquireDownstreamChannel">Acquire Downstream Channel</th>
+                    <td><span class="icon-status" ng-class="$parent.cableModemStatusLevel >= 3 ? 'icon-checked' : 'icon-checked-d'"></span></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="upstreamRanging">Upstream Ranging</th>
+                    <td><span class="icon-status" ng-class="$parent.cableModemStatusLevel >= 5 ? 'icon-checked' : 'icon-checked-d'"></span></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="dhcpBound">DHCP Bound</th>
+                    <td><span class="icon-status" ng-class="$parent.cableModemStatusLevel >= 6 ? 'icon-checked' : 'icon-checked-d'"></span></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="setTimeOfDay">Set Time-of-Day</th>
+                    <td><span class="icon-status" ng-class="$parent.cableModemStatusLevel >= 7 ? 'icon-checked' : 'icon-checked-d'"></span></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="configurationFileDownload">Configuration File Download</th>
+                    <td><span class="icon-status" ng-class="$parent.cableModemStatusLevel >= 9 ? 'icon-checked' : 'icon-checked-d'"></span></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="registration">Registration</th>
+                    <td><span class="icon-status" ng-class="$parent.cableModemStatusLevel >= 10 ? 'icon-checked' : 'icon-checked-d'"></span></td>
+                </tr>
+                <tr check-feature-state="isCable">
+                    <th width="40%" translate="operational">Operational</th>
+                    <td><span class="icon-status" ng-class="$parent.cableModemStatusLevel === 11 ? 'icon-checked' : 'icon-checked-d'"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <table class="table-form table-vert table-left" id="cableModemNetworkParameters">
+            <thead>
+                <tr>
+                    <th colspan="2" translate="cableModemNetworkParameters">Cable Modem Network Parameters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th width="40%" translate="mMac">MAC</th>
+                    <td ng-bind="deviceInfo.wanMacAddress"></td>
+                </tr>
+                <tr>
+                    <th check-feature-state="docsisNetworkparamsModemBasicInfo" width="40%" translate="IPAddress">IP Address</th>
+                    <td check-feature-state="docsisNetworkparamsModemBasicInfo" ng-bind="deviceInfo.publicIpv4"></td>
+                </tr>
+                <tr>
+                    <th check-feature-state="docsisNetworkparamsModemBasicInfo" width="40%" translate="subnetMask">Subnet Mask</th>
+                    <td check-feature-state="docsisNetworkparamsModemBasicInfo" ng-bind="deviceInfo.publicSubnetMask"></td>
+                </tr>
+                <tr>
+                    <th check-feature-state="docsisNetworkparamsModemBasicInfo" width="40%" translate="IPGateway">IP Gateway</th>
+                    <td check-feature-state="docsisNetworkparamsModemBasicInfo" ng-bind="deviceInfo.docsis.defaultGateway"></td>
+                </tr>
+                <tr >
+                    <th check-feature-state="docsisNetworkparamsModemBasicInfo" width="40%" translate="timeServer">Time Server</th>
+                    <td check-feature-state="docsisNetworkparamsModemBasicInfo" ng-bind="deviceInfo.docsis.timeServer"></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="standardSpecificationCompliant">Standard Specification Compliant</th>
+                    <td ng-bind="deviceInfo.docsis.standardSpecification"></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="CMCertificates0">CM DOCSIS 3.0 Certificates</th>
+                    <td ng-bind="deviceInfo.docsis.cmCertificates0 | translate"></td>
+                </tr>
+                <tr>
+                    <th width="40%" translate="CMCertificates">CM DOCSIS 3.1 Certificates</th>
+                    <td ng-bind="deviceInfo.docsis.cmCertificates | translate"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p translate="cableModemPageDescription1" ng-if="!netparams">The information below shows current status of this home gateway.</p>
+    <table class="table-form table-vert table-left" id="deviceInfoTable" ng-if="!netparams">
+        <tbody>
+            <tr>
+                <th width="40%" translate="standardSpecCompliant">Standard Specification Compliant</th>
+                <td translate="DOCSISVersion">DOCSIS 3.0</td>
+            </tr>
+            <tr>
+                <th width="40%" translate="hardwareVersion" >Hardware Version</th>
+                <td ng-bind="deviceInfo.hardwareVersion"></td>
+            </tr>
+            <tr>
+                <th width="40%" translate="softwareVersion">Software Version</th>
+                <td ng-bind="deviceInfo.softwareVersion"></td>
+            </tr>
+            <tr>
+                <th width="40%" translate="wanMACAddress">Cable Modem MAC Address</th>
+                <td ng-bind="!deviceInfo.docsis || !deviceInfo.docsis.macAddress ? ( 'notAvailable' | translate) : deviceInfo.docsis.macAddress "></td>
+            </tr>
+            <tr>
+                <th width="40%" translate="serialNumber">Cable Modem Serial Number</th>
+                <td ng-bind="deviceInfo.serialNumber"></td>
+            </tr>
+            <tr>
+                <th width="40%" translate="uptime"></th>
+                <td ng-bind=" deviceInfo.uptimeInSeconds | timeFormat : ('uptimeFormat' | translate) "></td>
+            </tr>
+            <tr>
+                <th width="40%" translate="networkAccess">Network Access</th>
+				<td ng-bind="deviceInfo.docsis.networkAccessStatus === 1 ? 'networkAccessAllowed' : 'networkAccessNotAllowed' | translate"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- help -->
+<ul id="tlyPageGuide">
+    <li translate="deviceInfoTip1" data-tourtarget="#deviceInfoTable"></li>
+    <li translate="modemRouterTabs" data-tourtarget="#generalModemRouterTabs"></li>
+    <li translate="cableModemSubtabsHelp" data-tourtarget="#subTabsCableModem"></li>
+</ul>
+<script>
+    Foundation.libs.reveal.settings.close_on_background_click = false;
+    $(document).foundation();
+</script>

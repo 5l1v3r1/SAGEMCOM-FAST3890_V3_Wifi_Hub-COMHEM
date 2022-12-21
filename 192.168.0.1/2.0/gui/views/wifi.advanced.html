@@ -1,0 +1,104 @@
+<div class="content">
+	<div wait-loading=""></div>
+	<div check-feature-state="wifiDualTabs" class="wifi-dual-sub-tabs-menu ng-hide" ng-show="!loading && lastRadioName !== '5GHzExt'">
+		<a class="shs sub" href="javascript:void(0)">Show Sections</a>
+		<dl id="wifi-dual-advanced" class="tabs sub-tabs" ng-class="changeToVertical ? 'vertical' : ''" data-tab="" tab-click="">
+			<dd ng-show="mode === 'priv' && !hideTabBar">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.wifi.advanced({radio : '2.4GHz', mode: 'priv'})" tabindex="1">2.4 GHz</a>
+			</dd>
+			<dd ng-show="mode === 'priv' && !hideTabBar">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.wifi.advanced({radio : '5GHz', mode: 'priv'})" tabindex="2">5 GHz</a>
+			</dd>
+			<dd ng-show="mode === 'priv' && hideTabBar">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.advanced.chanellSelection({radio : '2.4GHz', mode: 'priv'})" tabindex="1">2.4 GHz</a>
+			</dd>
+			<dd ng-show="mode === 'priv' && hideTabBar">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.advanced.chanellSelection({radio : '5GHz', mode: 'priv'})" tabindex="2">5 GHz</a>
+			</dd>
+			<dd ng-show="mode === 'guest'">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.wifi.advanced({radio : '2.4GHz', mode: 'guest'})" tabindex="1">2.4 GHz</a>
+			</dd>
+			<dd ng-show="mode === 'guest'">
+				<a href="javascript:void(0)" click-loading="" ui-sref="user.wifi.advanced({radio : '5GHz', mode: 'guest'})" tabindex="2">5 GHz</a>
+			</dd>
+		</dl>
+	</div>
+	<div class="content w100 ng-hide" ng-class="isCustomTitle() ? 'mt-15' : ''" ng-show="!loading" id="advanced-24">
+		<form ng-submit="save()" name="formWifiAdvanced" check-unsaved="">
+		<h4 class="maintitle" translate="advancedConfig" ng-if="!isCustomTitle()">Advanced Configuration</h4>
+		<div class="row">
+			<div class="columns medium-3 small-12">
+				<label translate="wifiMode">Wireless Mode</label>
+
+                <select id="wifi24advancedTip1" ng-model="operatingStandards" ng-options="standard.method as standard.label for standard in possibleStandards" name="wirelessMode" ng-change="changeWifiMode()" ng-disabled="readOnly">
+                </select>
+				<div id="wifi24advancedTip11" class="wifiStatus columns small-12 medium-7 large-4 wifi-empty-possible-standards">
+					<span name="operatingStandards" ng-bind="operatingStandards" ng-show="!possibleStandards.length"></span>
+				</div>
+			</div>
+
+			
+
+			<div class="columns small-12" ng-class="renameBandwidthItem ? 'large-3 medium-3' : 'large-2 medium-2'">
+				<label translate="bandWidth">Bandwidth</label>
+                <select id="bandwidth" ng-model="channelBandwidth" name="channelBandwidth" ng-options="chBdwidth.value as chBdwidth.label for chBdwidth in supportedChannelBandwidth | orderBy: 'order'" ng-change="changeWifiBandwidth()" ng-disabled="readOnly">
+				</select>
+				<small ng-if="bandwithWarningShown" class="error" translate="bandwithWarning"></small>
+			</div>
+
+			<div id="extension-channel" ng-hide="channelBandwidth === '20MHZ' || channelBandwidth === 'AUTO'">
+				
+			</div>
+
+			
+
+			
+			
+
+			<div class="columns large-2 medium-2 small-12 end" ng-if="ssidIsolationField">
+				<label for="wifi-ssid-isolation" translate="ssidIsolation">SSID Isolation</label>
+				<div class="onoffswitch">
+                    <input id="wifi-ssid-isolation" class="onoffswitch-checkbox" name="onoffswitch" type="checkbox" ng-model="$parent.ssidIsolation" ng-disabled="readOnly">
+					<label class="onoffswitch-label" for="wifi-ssid-isolation"> <div class="onoffswitch-inner"></div> <div class="onoffswitch-switch"></div> </label>
+				</div>
+			</div>
+        </div>
+
+        <div class="row">
+            <!-- Channel Selection -->
+            
+            <!-- Wifi Spectrum -->
+            
+        </div>
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		<div class="right">
+			<button id="wifi24advancedTip10" class="button tiny radius btn-cancel" translate="cancel" type="button" click-loading="" ui-sref="user.home" ng-if="!readOnly">Cancel</button>
+			<button id="wifi24advancedTip11" class="button tiny radius" translate="apply" type="submit" ng-if="!readOnly">Apply</button>
+		</div>
+		</form>
+	</div>
+</div>
+
+<!-- help button -->
+<ul id="tlyPageGuide">
+  <li translate="wifi24advancedTip1" data-tourtarget="#wifi24advancedTip1"></li>
+  <li translate="wifi24advancedTip2" data-tourtarget="#wifi24advancedTip2"></li>
+  <li translate="wifi24advancedTip3" data-tourtarget="#bandwidth"></li>
+  <li translate="wifi24advancedTip4" data-tourtarget="#wifi24advancedTip4"></li>
+  <li translate="wifi24advancedTip5" data-tourtarget="#wifi24advancedTip5"></li>
+  <li translate="wifi24advancedTip5" data-tourtarget="#wifi24advancedTip5GHz"></li>
+  <li translate="wifi24advancedTip5" data-tourtarget="#custom-wifi24advancedTip5"></li>
+  <li translate="wifi24advancedTip6" data-tourtarget="#wifi24advancedTip6"></li>
+  <li translate="wifi24advancedTip7" data-tourtarget="#wifi24advancedTip7"></li>
+  <li translate="wifi24advancedTip9" data-tourtarget="#wifi24advancedTip9">
+</li></ul>

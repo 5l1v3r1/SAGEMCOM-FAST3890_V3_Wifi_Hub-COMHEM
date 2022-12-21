@@ -1,0 +1,72 @@
+<div class="content ng-hide" ng-show="true" id="maintenance-sbox">
+	<a class="shs" href="javascript:void(0)" translate="showSubSection">Show Subsection</a>
+	<dl id="maintenanceTab" class="tabs" ng-class="{ 'sub-tabs' : horizontalTabs , 'vertical' : !horizontalTabs || changeToVertical  }" data-tab="" tab-click="">
+		<dd check-feature-state="reset" class="active">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.maintenance.reset" translate="resets">Resets</a>
+		</dd>
+		<dd check-feature-state="bkpRestore">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.maintenance.bkpRestore" translate="backupRestore">Backup & Restore</a>
+		</dd>
+		<dd check-feature-state="firmwareUpgradeRest">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.maintenance.firmwareUpdateRest" translate="menuMaintenanceSoftUpdate">Firmware Update</a>
+		</dd>
+		<dd check-feature-state="firmwareUpgrade">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.maintenance.firmwareUpdate" translate="menuMaintenanceSoftUpdate">Firmware Update</a>
+		</dd>
+		<dd check-feature-state="firmwareUpgrade">
+			<a href="javascript:void(0)" click-loading="" ui-sref="internal.mysagemcombox.maintenance.firmwareUpdate" translate="menuMaintenanceSoftUpdate">Firmware Update</a>
+		</dd>
+		
+		
+
+		
+		<dd check-feature-state="logs">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.maintenance.log" translate="menuMaintenanceLogs">Logs</a>
+		</dd>
+		<dd check-feature-state="logs">
+			<a href="javascript:void(0)" click-loading="" ui-sref="internal.mysagemcombox.maintenance.log" translate="menuMaintenanceLogs">Logs</a>
+		</dd>
+		<dd check-feature-state="logs">
+			<a href="javascript:void(0)" click-loading="" ui-sref="admin.mysagemcombox.maintenance.log" translate="menuMaintenanceLogs">Logs</a>
+		</dd>
+		<dd check-feature-state="userAccessMaintenance">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.mysagemcombox.maintenance.user" translate="user">User</a>
+		</dd>
+		
+		
+		<dd check-feature-state="dslLine">
+			<a href="javascript:void(0)" translate="dslLine" click-loading="" ui-sref="user.mysagemcombox.maintenance.dslLine">DSL Line</a>
+        </dd>
+        <dd check-feature-state="speedTestSimple">
+			<a href="javascript:void(0)" translate="speedTestSimple" click-loading="" ui-sref="user.mysagemcombox.maintenance.speed">Speed Test</a>
+        </dd>
+		<dd check-feature-state="reset" class="active">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.maintenance.reset" translate="resets">Resets</a>
+		</dd>
+		<dd check-feature-state="bkpRestore">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.maintenance.bkpRestore" translate="backupRestore">Backup & Restore</a>
+		</dd>
+		<dd check-feature-state="firmwareUpgrade">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.maintenance.firmwareUpdate" translate="menuMaintenanceSoftUpdate">Firmware Update</a>
+		</dd>
+		
+		
+		<dd check-feature-state="logs">
+			<a href="javascript:void(0)" click-loading="" ui-sref="user.accessControl.maintenance.log" translate="menuMaintenanceLogs">Logs</a>
+		</dd>
+		
+		<dd check-feature-state="dslLine">
+			<a href="javascript:void(0)" translate="dslLine" click-loading="" ui-sref="user.accessControl.maintenance.dslLine">DSL Line</a>
+        </dd>
+        <dd check-feature-state="speedTestSimple">
+			<a href="javascript:void(0)" translate="speedTestSimple" click-loading="" ui-sref="user.accessControl.maintenance.speed">Speed Test</a>
+        </dd>
+	</dl>
+	<div class="tabs-content" ng-class="{ 'vertical' : !horizontalTabs }">
+		<div class="content active" ui-view=""></div>
+	</div>
+</div>
+<script>
+	Foundation.libs.reveal.settings.close_on_background_click = false;
+	$(document).foundation();
+</script>
