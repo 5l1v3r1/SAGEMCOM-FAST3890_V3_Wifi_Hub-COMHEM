@@ -6,7 +6,36 @@ This is also a router from a Swedish Internet operator to find back doors and to
 
 I saw that there was some information about this router and I tried: [Sagemcom F@ast v3890 Exploit](https://github.com/Lyrebirds/sagemcom-fast-3890-exploit/blob/master/VULNERABLE.md) but unfortunately without results, and I'm not the best at python so I'll have to try my own way eventually, does anyone know if there's already a way to get root on this device then I'd be grateful if you told me how then I'm extremely interested in entering Sagemcom's units.
 
-Here is few things I have checked so far, I will return to this repo asap to get root!! To be continued.
+Here is few things I have checked so far, I will return to this repo asap to get root!! *To be continued*.
+
+
+![20230102_053416](https://user-images.githubusercontent.com/26827453/210195391-9150afea-9859-4c41-b984-561a94f4ecff.png)
+
+
+![20230102_054110](https://user-images.githubusercontent.com/26827453/210195657-0cd7c163-f408-44fb-875a-92a7f25724e9.png)
+
+![20230102_054003](https://user-images.githubusercontent.com/26827453/210195624-d99eb7ac-3726-47ff-a382-f7939fa49244.png)
+
+![20230102_054158](https://user-images.githubusercontent.com/26827453/210195695-56472c5e-f7ec-42d6-85b8-42050b39ed74.png)
+
+![20230102_053802](https://user-images.githubusercontent.com/26827453/210195523-4c50643b-4ff9-460b-bfea-4c0456dadff6.png)
+
+![20230102_053254](https://user-images.githubusercontent.com/26827453/210195392-d83f1293-998d-404c-b08b-cdf1e7f5a79e.png)
+![20230102_053328](https://user-images.githubusercontent.com/26827453/210195394-5f89694b-89cf-42c0-91f6-8efbbf67838a.png)
+![20230102_053344](https://user-images.githubusercontent.com/26827453/210195395-fb25899d-5c0e-4507-b9d7-39cff1ce5ac1.png)
+![20230102_053350](https://user-images.githubusercontent.com/26827453/210195398-215b95f9-42c9-4fba-96cf-5264b2767618.png)
+![20230102_053359](https://user-images.githubusercontent.com/26827453/210195399-f7027f5a-3a02-4c64-94cc-755cf445d3c2.png)
+![20230102_053403](https://user-images.githubusercontent.com/26827453/210195401-644a256c-b456-4d5f-9ae0-ce85e204a7f9.png)
+![20230102_053432](https://user-images.githubusercontent.com/26827453/210195402-ecacf1e2-3a78-4775-87d7-86a19f3abcf4.png)
+![20230102_053438](https://user-images.githubusercontent.com/26827453/210195404-34f1c194-419a-45a9-88c8-17ee68f76021.png)
+![12](https://user-images.githubusercontent.com/26827453/210195415-ce2d1092-7a6d-4dc9-8703-b8eed16524e5.png)
+![20230102_053830](https://user-images.githubusercontent.com/26827453/210195612-7532a08d-322f-4ee5-9dd0-27917cb827d0.png)
+
+
+
+
+
+
 
 ![20230102_050353](https://user-images.githubusercontent.com/26827453/210194383-215ad918-cd73-4930-afb4-d55743d18349.png)
 
