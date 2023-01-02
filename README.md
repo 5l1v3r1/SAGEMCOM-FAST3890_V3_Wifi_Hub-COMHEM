@@ -223,7 +223,9 @@ $.xmo.getValuesTree("Device/UserAccounts/Users/Role['ENDUSER']/Role");
 $.xmo.getValuesTree("Device/UserAccounts/Users/User[@uid='3']/Profiles/Profile[@uid='2']");
 ```
 
-### List all settings for all users maxdepth 1, maxdepth 1>= sorted by name device_useraccounts1.png
+Notice: 
+
+List all settings for all users maxdepth 1, maxdepth 1>= sorted by name device_useraccounts1.png
 
 ### List profiles by username
 
@@ -253,9 +255,9 @@ $.xmo.getValuesTree("Device/UserAccounts/Users/User[@uid='3']/RemoteAccesses/Rem
 ```javascript
 $.xmo.getValuesTree("Device/UserAccounts/Users/User[@uid='3']/Functionalities");
 ```
-
+```javascript
 $.xmo.getValuesTree("Device/UserAccounts/Users/*/WebAccessPriviledge");
-
+```
 
 ### Capture all traffic during documentation
 
@@ -265,6 +267,7 @@ $.xmo.getValuesTree("Device/UserAccounts/Users/*/WebAccessPriviledge");
 tsharkDate=$(date +%Y-%m-%d)
 tshark -i wlan0 -w investigation_sagemcom__3890v3_ch_comhem-${tsharkDate}.pcap
 ```
+
 ### Capture all GET requests from file
 ```bash
 tshark -r investigation_sagemcom__3890v3_ch_comhem-.pcap -T json \
@@ -277,6 +280,7 @@ tshark -r investigation_sagemcom__3890v3_ch_comhem-.pcap -T json \
 ```
 
 ### Capture all POST / GET / PUT requests from file
+
 ```bash
 tshark -i wlan0 -T json \
     "http.request.method==POST" or "http.request.method==GET" or "http.request.method==PUT"
@@ -300,14 +304,16 @@ tshark -r investigation_sagemcom__3890v3_ch_comhem-.pcap \
 
 ### Capture Post and GET requests in realtime
 
+```bash
 tshark -i wlan0 -f 'port 80 and 
 (tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504F5354 or 
 tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x47455420)' -Ttext -z "follow,tcp,ascii,0" -w pcap
-
+```
 
 ## Developer Console
 
 ### Get all settings for device from developer console
+
 ```javascript
 $.xmo.getValuesTree("Device");
 ```
